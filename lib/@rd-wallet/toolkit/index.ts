@@ -138,8 +138,8 @@ class RDToolkit {
     return await this.encoder.loadKeyPair(this.profile);
   }
 
-  public async openBalance(requestId: string): Promise<OpenBalanceResponse> {
-    const request = OpenBalanceRequest.fromObject({ requestId });
+  public async openBalance(accountId: string): Promise<OpenBalanceResponse> {
+    const request = OpenBalanceRequest.fromObject({ accountId });
     const keyPair = await this.keyPair();
     const authorization = await this.authority.authorization(this.profile.getAppId());
     const resp = await Client.of(this.profile.getAppId()).authorization(authorization!).sendProto(keyPair!, this.openUrl + '/wallet/balance', request.serializeBinary());
