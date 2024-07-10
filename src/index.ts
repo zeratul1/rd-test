@@ -31,6 +31,9 @@ const start = async () => {
     console.log('toArray(): ', balance.toArray());
     console.log('toString(): ', balance.toString());
 
+    const account = await toolkit.accountDetail(ACCOUNT_ID);
+    console.log('account detail: ', account);
+
     return balance;
   } catch(err) {
     console.error(err)

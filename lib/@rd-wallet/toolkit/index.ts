@@ -143,6 +143,8 @@ class RDToolkit {
     const keyPair = await this.keyPair();
     const authorization = await this.authority.authorization(this.profile.getAppId());
     const resp = await Client.of(this.profile.getAppId()).authorization(authorization!).sendProto(keyPair!, this.openUrl + '/wallet/balance', request.serializeBinary());
+    console.log('open balance request: ', request);
+    console.log('open balance resp: ', resp);
     return OpenBalanceResponse.deserializeBinary(resp);
   }
 
@@ -152,6 +154,8 @@ class RDToolkit {
     const keyPair = await this.keyPair();
     const authorization = await this.authority.authorization(this.profile.getAppId());
     const resp = await Client.of(this.profile.getAppId()).authorization(authorization!).sendProto(keyPair!, this.openUrl + '/wallet/account/detail', request.serializeBinary());
+    console.log('account detail request: ', request);
+    console.log('account detail resp: ', resp);
     return OpenAccountQueryResponse.deserializeBinary(resp);
   }
 
