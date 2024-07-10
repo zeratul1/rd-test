@@ -2,5 +2,6 @@ services:
   test:
     image: node:rd-test
     build: .
+    command: npm run dev
     volumes:
       - /data/websites/legendapi/envs/keys:/usr/src/app/keys
