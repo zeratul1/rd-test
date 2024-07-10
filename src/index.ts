@@ -12,7 +12,7 @@ const ACCOUNT_ID = "49465601";
 
 const PGP_PATH = "./keys/RD/pgp";
 
-const fnTest = async () => {
+const start = async () => {
   try {
     const profile = Profile.of(CLIENT_ID, CLIENT_KEY_ID, RD_KEY_ID);
     console.log(profile)
@@ -21,6 +21,9 @@ const fnTest = async () => {
       .addAuthority(ACCESS_KEY, SECRET_KEY)
       .addSecret(CLIENT_KEY_ID, PRIVATE_KEY_PWD);
     console.log(toolkit)
+
+    const keyPair = await toolkit.keyPair()
+    console.log('Key Pair: ', keyPair);
 
     const balance = await toolkit.openBalance(ACCOUNT_ID);
     console.log('has_data: ', balance.has_data);
@@ -35,6 +38,6 @@ const fnTest = async () => {
 }
 
 (async () => {
-  const resp = await fnTest()
+  const resp = await start()
   console.log('resp: ', resp)
 })()
