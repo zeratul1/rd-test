@@ -12,7 +12,7 @@ const RD_KEY_ID = "806e2a2496f2380a";
 const PRIVATE_KEY_PWD = "123456";
 const ACCOUNT_ID = "49465601";
 
-const PGP_PATH = "../keys/RD/pgp";
+const PGP_PATH = "./keys/RD/pgp";
 
 const fnTest = async () => {
   try {
