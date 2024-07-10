@@ -1,10 +1,10 @@
 FROM node:20
 
-WORKDIR /usr/src/app
-
 ENV RD_MODE=DEV
 
-COPY ./keys ./keys
+VOLUME /usr/src/app/keys
+WORKDIR /usr/src/app
+
 COPY . .
 
 RUN --mount=type=cache,target=/root/.npm npm install

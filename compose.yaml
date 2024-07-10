@@ -1,0 +1,6 @@
+services:
+  test:
+    image: node:rd-test
+    build: .
+    volumes:
+      - /data/websites/legendapi/envs/keys:/usr/src/app/keys
