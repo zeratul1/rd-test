@@ -5,8 +5,8 @@ console.log('yahaha')
 const CLIENT_ID = "566625097465597952";
 const ACCESS_KEY = "6a91e293db65f5487475430f5b4e1711";
 const SECRET_KEY = "Cmp5zXfEg68sv3sDlizPCi8kjXSu2f1K";
-const CLIENT_KEY_ID = "7d8ef878498fdb9b";
-const RD_KEY_ID = "806e2a2496f2380a";
+const CLIENT_KEY_ID = "ff5e8c4a514994d7";
+const RD_KEY_ID = "e551d1b6288160be";
 const PRIVATE_KEY_PWD = "123456";
 const ACCOUNT_ID = "49465601";
 
