@@ -26,10 +26,10 @@ const start = async (string = '') => {
     const keyPair = await toolkit.keyPair();
     console.log('Key Pair: ', keyPair);
 
-    const requestData = Buffer.from(string, 'base64')
-    console.log('request data: ', requestData.toString('base64'))
+    const requestData = new Uint8Array(Buffer.from(string, 'base64'))
+    console.log('request data: ', requestData)
     
-    const data = await Encrypt(profile.getPrivateKey()!, profile.getPublicKey()!, requestData)
+    const data = await Encrypt(keyPair?.getPrivateKey()!, keyPair?.getPublicKey()!, requestData)
     return data;
   } catch (err) {
     console.error(err);
