@@ -29,8 +29,8 @@ import {
     const legendPrivateKeyPath = path.join(PGP_PATH, CLIENT_ID, CLIENT_KEY_ID, 'private.key');
     const legendPublicKeyPath = path.join(PGP_PATH, CLIENT_ID, CLIENT_KEY_ID, 'public.key');
   
-    const rdPrivateKeyPath = path.join(PGP_PATH, CLIENT_ID, CLIENT_KEY_ID, 'private.key');
-    const rdPublicKeyPath = path.join(PGP_PATH, CLIENT_ID, CLIENT_KEY_ID, 'public.key');
+    const rdPrivateKeyPath = path.join(PGP_PATH, RD_KEY_ID, 'private.key');
+    const rdPublicKeyPath = path.join(PGP_PATH, RD_KEY_ID, 'public.key');
   
     const legendPrivateKeyArmored = fs.readFileSync(legendPrivateKeyPath, { encoding: 'utf8' });
     const legendPublicKeyArmored = fs.readFileSync(legendPublicKeyPath, { encoding: 'utf8' });
@@ -44,8 +44,7 @@ import {
     const rdPublicKeyArmored = fs.readFileSync(rdPublicKeyPath, { encoding: 'utf8' });
     const rdPublicKey = await readKey({ armoredKey: rdPublicKeyArmored });
     const rdPrivateKey = await decryptKey({
-        privateKey: await readPrivateKey({ armoredKey: rdPrivateKeyArmored }),
-        passphrase
+        privateKey: await readPrivateKey({ armoredKey: rdPrivateKeyArmored })
     });
   
     const encrypted = await encrypt({
