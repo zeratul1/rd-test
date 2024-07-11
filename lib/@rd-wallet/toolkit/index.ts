@@ -1,4 +1,4 @@
-import { Authority, Client, Decrypt, Encoder, Profile } from './libs';
+import { Authority, Client, Encrypt, Decrypt, Encoder, Profile } from './libs';
 
 import {
   CallbackRequest,
@@ -327,4 +327,4 @@ class RDToolkit {
   }
 }
 
-export { ICallback, Profile, RDToolkit };
+export { ICallback, Profile, RDToolkit, Encrypt, Decrypt };

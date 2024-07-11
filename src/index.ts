@@ -1,28 +1,28 @@
-import { ICallback, Profile, RDToolkit } from '@rd-wallet/toolkit'
+import { ICallback, Profile, RDToolkit } from '@rd-wallet/toolkit';
+import {
+  CLIENT_ID,
+  ACCESS_KEY,
+  SECRET_KEY,
+  CLIENT_KEY_ID,
+  RD_KEY_ID,
+  PRIVATE_KEY_PWD,
+  ACCOUNT_ID,
+  PGP_PATH,
+} from './config';
 
-console.log('yahaha')
-
-const CLIENT_ID = "566625097465597952";
-const ACCESS_KEY = "6a91e293db65f5487475430f5b4e1711";
-const SECRET_KEY = "Cmp5zXfEg68sv3sDlizPCi8kjXSu2f1K";
-const CLIENT_KEY_ID = "ff5e8c4a514994d7";
-const RD_KEY_ID = "e551d1b6288160be";
-const PRIVATE_KEY_PWD = "123456";
-const ACCOUNT_ID = "49465601";
-
-const PGP_PATH = "./keys/RD/pgp";
+console.log('yahaha');
 
 const start = async () => {
   try {
     const profile = Profile.of(CLIENT_ID, CLIENT_KEY_ID, RD_KEY_ID);
-    console.log(profile)
+    console.log(profile);
 
     const toolkit = RDToolkit.of(PGP_PATH, profile)
       .addAuthority(ACCESS_KEY, SECRET_KEY)
       .addSecret(CLIENT_KEY_ID, PRIVATE_KEY_PWD);
-    console.log(toolkit)
+    console.log(toolkit);
 
-    const keyPair = await toolkit.keyPair()
+    const keyPair = await toolkit.keyPair();
     console.log('Key Pair: ', keyPair);
 
     const balance = await toolkit.openBalance(ACCOUNT_ID);
@@ -35,12 +35,12 @@ const start = async () => {
     console.log('account detail: ', account);
 
     return balance;
-  } catch(err) {
-    console.error(err)
+  } catch (err) {
+    console.error(err);
   }
-}
+};
 
 (async () => {
-  const resp = await start()
-  console.log('resp: ', resp)
-})()
+  const resp = await start();
+  console.log('resp: ', resp);
+})();
