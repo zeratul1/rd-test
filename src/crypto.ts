@@ -13,7 +13,7 @@ console.log('yahaha');
 console.log(Encrypt);
 console.log(Decrypt);
 
-const start = async (string) => {
+const start = async (string = '') => {
   try {
     const profile = Profile.of(CLIENT_ID, CLIENT_KEY_ID, RD_KEY_ID);
     console.log(profile);
@@ -26,7 +26,11 @@ const start = async (string) => {
     const keyPair = await toolkit.keyPair();
     console.log('Key Pair: ', keyPair);
 
-    return await Encrypt(profile.getPrivateKey()!, profile.getPublicKey()!, Buffer.from(string, 'base64'))
+    const requestData = Buffer.from(string, 'base64')
+    console.log('request data: ', requestData.toString('base64'))
+    
+    const data = await Encrypt(profile.getPrivateKey()!, profile.getPublicKey()!, requestData)
+    return data;
   } catch (err) {
     console.error(err);
   }
