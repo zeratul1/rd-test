@@ -2,6 +2,6 @@ services:
   test:
     image: node:rd-test
     build: .
-    command: npm run dev
+    command: npm run -s crypto
     volumes:
       - /data/websites/legendapi/envs/keys:/usr/src/app/keys

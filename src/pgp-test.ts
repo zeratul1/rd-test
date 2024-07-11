@@ -63,6 +63,12 @@ import {
         decryptionKeys: rdPrivateKey
     });
     console.log(decrypted); // 'Hello, World!'
+    
+    console.log('legend public key: ', legendPublicKey.getAlgorithmInfo());
+    console.log('legend private key: ', legendPrivateKey.getAlgorithmInfo());
+    console.log('rd public key: ', rdPublicKey.getAlgorithmInfo());
+    console.log('rd private key: ', rdPrivateKey.getAlgorithmInfo());
+
     // check signature validity (signed messages only)
     try {
         await signatures[0].verified; // throws on invalid signature
