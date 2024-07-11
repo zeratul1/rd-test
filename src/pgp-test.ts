@@ -64,10 +64,10 @@ import {
     });
     console.log(decrypted); // 'Hello, World!'
     
-    console.log('legend public key: ', legendPublicKey.getAlgorithmInfo());
-    console.log('legend private key: ', legendPrivateKey.getAlgorithmInfo());
-    console.log('rd public key: ', rdPublicKey.getAlgorithmInfo());
-    console.log('rd private key: ', rdPrivateKey.getAlgorithmInfo());
+    console.log('legend public key: \n', legendPublicKey.getAlgorithmInfo());
+    console.log('legend private key: \n', legendPrivateKey.getAlgorithmInfo());
+    console.log('rd public key: \n', rdPublicKey.getAlgorithmInfo());
+    console.log('rd private key: \n', rdPrivateKey.getAlgorithmInfo());
 
     // check signature validity (signed messages only)
     try {

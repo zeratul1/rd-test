@@ -24,17 +24,17 @@ const start = async (string = '') => {
     console.log(toolkit);
 
     const keyPair = await toolkit.keyPair();
-    console.log('Key Pair: ', keyPair);
-    console.log('private key fingerprint: ', keyPair?.getPrivateKey()?.getFingerprint());
-    console.log('public key fingerprint: ', keyPair?.getPublicKey()?.getFingerprint());
+    console.log('Key Pair: \n', keyPair);
+    console.log('private key fingerprint: \n', keyPair?.getPrivateKey()?.getFingerprint());
+    console.log('public key fingerprint: \n', keyPair?.getPublicKey()?.getFingerprint());
 
     const requestData = new Uint8Array(Buffer.from(string, 'base64'));
-    console.log('request data: ', requestData)
+    console.log('request data: \n', requestData)
     
     const data = await Encrypt(keyPair?.getPrivateKey()!, keyPair?.getPublicKey()!, requestData)
     const buffer = Buffer.from(data.toString(), 'utf8');
     const binary = new Uint8Array(buffer.buffer, buffer.byteOffset, buffer.byteLength);
-    console.log('content binary: ', binary);
+    console.log('content binary: \n', binary);
 
     return data;
   } catch (err) {
