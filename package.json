@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "node --import=tsx src/index.ts",
-    "crypto": "node --import=tsx src/crypto.ts"
+    "crypto": "node --import=tsx src/crypto.ts",
+    "pgp-test": "node --import=tsx src/pgp-test.ts"
   },
   "author": "",
   "license": "ISC",
