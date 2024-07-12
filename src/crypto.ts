@@ -42,7 +42,7 @@ const start = async (string = '') => {
   }
 };
 
-const encrypt = async (string = '') => {
+export const encrypt = async (string = '') => {
   try {
     const profile = Profile.of(CLIENT_ID, CLIENT_KEY_ID, RD_KEY_ID);
     const toolkit = RDToolkit.of(PGP_PATH, profile)
@@ -60,16 +60,20 @@ const encrypt = async (string = '') => {
   }
 };
 
-(async () => {
-  // const string = 'iVBORw0KGgoAAAANSUhEUgAAAIAAAABACAMAAADlCI9NAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAAZQTFRFAAAA////pdmf3QAAALRJREFUeNrsmMkKhUAMBLv//6dFXJ4bXh6kRtJ1GfGSUrIMkUII4T+8wEanJHyDjm86vun4VQZzHJsz8Cu4QXuBDj/AScJ3hfYCggXUS+BBJQLlN2G4CI4Cy3O1wOnj6TYACIhuhAInAXst1zgCWCPUXvXnOigV0KUVr+/LBB4yoUzAvxPdD+ieg7SB4C0Nu6UCt2TitnSqHsPDCexXMTUWECngAQS2oUQJCBa4nCGEjzIJMAAGagOccZvWAQAAAABJRU5ErkJggg==';
-  // const resp = await start(string);
-  // console.log('resp: ', resp);
-  
-  const input = process.argv.slice(2)[0];
-  if (input) {
-    const resp = await encrypt(input);
-    process.stdout.write(resp);
-  } else {
-    process.stdout.write('');
+export const decrypt = async (string = '') => {
+  try {
+    const profile = Profile.of(CLIENT_ID, CLIENT_KEY_ID, RD_KEY_ID);
+    const toolkit = RDToolkit.of(PGP_PATH, profile)
+      .addAuthority(ACCESS_KEY, SECRET_KEY)
+      .addSecret(CLIENT_KEY_ID, PRIVATE_KEY_PWD);
+    const keyPair = await toolkit.keyPair();
+
+    const responseData = new Uint8Array(Buffer.from(string, 'base64'));
+    const data = await Decrypt(keyPair?.getPrivateKey()!, keyPair?.getPublicKey()!, responseData);
+    
+    return Buffer.from((data as Uint8Array)).toString('base64');
+  } catch (err) {
+    process.stderr.write(err.message);
+    return '';
   }
-})();
+};

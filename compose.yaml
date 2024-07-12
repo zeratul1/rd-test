@@ -2,6 +2,12 @@ services:
   test:
     image: node:rd-test
     build: .
-    command: npm run -s crypto
+    environment:
+      - RD_MODE=DEV
+      - NODE_ENV=production
+      - PORT=3000
+    ports: 
+      - 3000:3000
+    command: npm run serve
     volumes:
       - /data/websites/legendapi/envs/keys:/usr/src/app/keys
