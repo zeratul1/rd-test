@@ -67,7 +67,7 @@ const start = async () => {
     const wrapped = performance.timerify(decrypt);
 
     const obs = new PerformanceObserver((list) => {
-      console.log(list.getEntries()[0].duration);
+      console.log(`decrypt execution time: ${list.getEntries()[0].duration} ms`);
     
       performance.clearMarks();
       performance.clearMeasures();
