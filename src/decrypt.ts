@@ -20,7 +20,7 @@ const decrypt = async (string = '') => {
     const responseData = new Uint8Array(Buffer.from(string, 'base64'));
     const data = await Decrypt(keyPair?.getPrivateKey()!, keyPair?.getPublicKey()!, responseData);
     
-    return data.toString();
+    return Buffer.from((data as Uint8Array)).toString('base64');
   } catch (err) {
     process.stderr.write(err.message);
     return '';
