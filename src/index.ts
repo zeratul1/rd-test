@@ -1,3 +1,7 @@
+import {
+  performance,
+  PerformanceObserver,
+} from 'node:perf_hooks';
 import { ICallback, Profile, RDToolkit, Decrypt, OpenBalanceResponse } from '@rd-wallet/toolkit';
 import {
   CLIENT_ID,
@@ -56,7 +60,22 @@ const start = async () => {
     const account = await toolkit.accountDetail(ACCOUNT_ID);
     console.log('account detail: \n', account);
 
-    const decryptedData = await Decrypt(keyPair?.getPrivateKey()!, keyPair?.getPublicKey()!, new Uint8Array(Buffer.from(respData)));
+    const decrypt = async () => {
+      return await Decrypt(keyPair?.getPrivateKey()!, keyPair?.getPublicKey()!, new Uint8Array(Buffer.from(respData)))
+    };
+
+    const wrapped = performance.timerify(decrypt);
+
+    const obs = new PerformanceObserver((list) => {
+      console.log(list.getEntries()[0].duration);
+    
+      performance.clearMarks();
+      performance.clearMeasures();
+      obs.disconnect();
+    });
+    obs.observe({ entryTypes: ['function'] });
+
+    const decryptedData = await wrapped();
     const resp = OpenBalanceResponse.deserializeBinary(decryptedData as Uint8Array);
     console.log('test data: \n', resp)
 
